@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-dbvyb#sa7pe@l-x%yve+gf4ua_!l_n&(a^(_73k5y=m1or397!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -37,16 +37,32 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'join_app',
+    'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+  'http://127.0.0.1:5500',
+  'http://localhost:5500',
+]
+
+CORS_ALLOWED_ORIGINS = [
+  'http://127.0.0.1:5500',
+  'http://localhost:5500',
+
 ]
 
 ROOT_URLCONF = 'join_backend.urls'
