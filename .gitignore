@@ -9,3 +9,8 @@ join_app/__pycache__/models.cpython-313.pyc
 join_app/__pycache__/admin.cpython-313.pyc
 join_app/migrations/__pycache__/__init__.cpython-313.pyc
 join_backend/__pycache__/settings.cpython-313.pyc
+join_app/migrations/0001_initial.py
+join_app/migrations/__pycache__/0001_initial.cpython-313.pyc
+join_app/api/__pycache__/serializers.cpython-313.pyc
+join_app/api/__pycache__/urls.cpython-313.pyc
+join_app/api/__pycache__/views.cpython-313.pyc
