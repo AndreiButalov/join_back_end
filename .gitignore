@@ -14,3 +14,4 @@ join_app/migrations/__pycache__/0001_initial.cpython-313.pyc
 join_app/api/__pycache__/serializers.cpython-313.pyc
 join_app/api/__pycache__/urls.cpython-313.pyc
 join_app/api/__pycache__/views.cpython-313.pyc
+join_backend/__pycache__/settings.cpython-313.pyc

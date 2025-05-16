@@ -13,7 +13,7 @@ class User(models.Model):
 
 
 class GuestContact(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='guest_contacts')
+    # user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='guest_contacts')
     name = models.CharField(max_length=100)
     email = models.EmailField()
     phone = models.CharField(max_length=20)
@@ -43,8 +43,8 @@ class Task(models.Model):
     status = models.CharField(max_length=50)
     date = models.DateField()
     subtasks = models.ManyToManyField(SubTask, blank=True)
-    assigned_users = models.ManyToManyField(User, blank=True, related_name='tasks')
-    assigned_guests = models.ManyToManyField(GuestContact, blank=True, related_name='tasks')
+    # assigned_users = models.ManyToManyField(User, blank=True, related_name='tasks')
+    # assigned_guests = models.ManyToManyField(GuestContact, blank=True, related_name='tasks')
     color = models.CharField(max_length=20, blank=True)
     initial = models.CharField(max_length=2, blank=True)
 
@@ -53,9 +53,9 @@ class Task(models.Model):
     def __str__(self):
         return self.title
 
-    def save(self, *args, **kwargs):        
-        if not self.initial and self.assigned_guests.exists():
-            first_guest = self.assigned_guests.first()
-            self.initial = first_guest.name[:2].upper()
-            self.color = first_guest.color
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):        
+    #     if not self.initial and self.assigned_guests.exists():
+    #         first_guest = self.assigned_guests.first()
+    #         self.initial = first_guest.name[:2].upper()
+    #         self.color = first_guest.color
+    #     super().save(*args, **kwargs)
