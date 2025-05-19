@@ -35,6 +35,7 @@ class SubTask(models.Model):
 
 class Task(models.Model):
    
+    # name = models.ManyToManyField(GuestContact, blank=True, related_name='guest_contacts')
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     category = models.CharField(max_length=20, null=True, blank=True)
@@ -44,9 +45,8 @@ class Task(models.Model):
     date = models.DateField()
     subtasks = models.ManyToManyField(SubTask, blank=True)
     # assigned_users = models.ManyToManyField(User, blank=True, related_name='tasks')
-    # assigned_guests = models.ManyToManyField(GuestContact, blank=True, related_name='tasks')
-    color = models.CharField(max_length=20, blank=True)
-    initial = models.CharField(max_length=2, blank=True)
+    assigned_guests = models.ManyToManyField(GuestContact, blank=True, related_name='tasks')
+    
 
     is_selected = models.BooleanField(default=False)
 
