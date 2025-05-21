@@ -44,7 +44,7 @@ class Task(models.Model):
     status = models.CharField(max_length=50)
     date = models.DateField()
     subtasks = models.ManyToManyField(SubTask, blank=True)
-    # assigned_users = models.ManyToManyField(User, blank=True, related_name='tasks')
+    assigned_user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='tasks')
     assigned_guests = models.ManyToManyField(GuestContact, blank=True, related_name='tasks')
     
 
