@@ -53,9 +53,4 @@ class Task(models.Model):
     def __str__(self):
         return self.title
 
-    # def save(self, *args, **kwargs):        
-    #     if not self.initial and self.assigned_guests.exists():
-    #         first_guest = self.assigned_guests.first()
-    #         self.initial = first_guest.name[:2].upper()
-    #         self.color = first_guest.color
-    #     super().save(*args, **kwargs)
+    
