@@ -27,6 +27,7 @@ class GuestContact(models.Model):
 class SubTask(models.Model):
     content = models.CharField(max_length=255)
     is_done = models.BooleanField(default=False)
+    task = models.ForeignKey("Task", on_delete=models.CASCADE, null=True, related_name='subtasks')
 
     def __str__(self):
         return self.content
@@ -42,8 +43,7 @@ class Task(models.Model):
     priority = models.CharField(max_length=20, default="Medium")    
     priorityImg = models.TextField(default="./assets/img/vector_strich.svg") 
     status = models.CharField(max_length=50)
-    date = models.DateField()
-    subtasks = models.ManyToManyField(SubTask, blank=True)
+    date = models.DateField()    
     assigned_user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='tasks')
     assigned_guests = models.ManyToManyField(GuestContact, blank=True, related_name='tasks')
     
