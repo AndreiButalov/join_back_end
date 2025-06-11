@@ -1,10 +1,11 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-class UserContact(models.Model):
+class User(models.Model):    
     color = models.CharField(max_length=20)
-    email = models.EmailField()
-    name = models.CharField(max_length=100)
-    password = models.TextField()
+    email = models.EmailField(null=True)
+    name = models.CharField(max_length=200, null=True)
+    password = models.TextField(null=True)
 
 
     def __str__(self):
@@ -42,7 +43,7 @@ class Task(models.Model):
     priorityImg = models.TextField(default="./assets/img/vector_strich.svg") 
     status = models.CharField(max_length=50)
     date = models.DateField()    
-    assigned_user = models.ForeignKey(UserContact, on_delete=models.SET_NULL, null=True, blank=True, related_name='tasks')
+    assigned_user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='tasks')
     assigned_guests = models.ManyToManyField(GuestContact, blank=True, related_name='tasks')   
     is_selected = models.BooleanField(default=False)
 
