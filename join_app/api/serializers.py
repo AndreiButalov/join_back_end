@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from join_app.models import User, GuestContact, Task, SubTask
+from join_app.models import UserContact, GuestContact, Task, SubTask
 
 
 class UsersSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
+        model = UserContact
         fields = '__all__'
 
 
