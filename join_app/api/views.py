@@ -1,14 +1,14 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import UsersSerializer, GuestContactsSerializer, TasksSerializer, SubTaskSerializer
-from join_app.models import User, GuestContact, Task, SubTask
+from join_app.models import UserProfile, GuestContact, Task, SubTask
 from rest_framework import mixins
 from rest_framework import generics
 
 
 class UsersView(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     
-    queryset = User.objects.all()
+    queryset = UserProfile.objects.all()
     serializer_class = UsersSerializer
 
     def get(self, request, *args, **kwargs):
@@ -23,7 +23,7 @@ class UsersDetail(mixins.RetrieveModelMixin,
                   mixins.UpdateModelMixin,
                   mixins.DestroyModelMixin,
                   generics.GenericAPIView):
-    queryset = User.objects.all()
+    queryset = UserProfile.objects.all()
     serializer_class = UsersSerializer
 
     def get(self, request, *args, **kwargs):

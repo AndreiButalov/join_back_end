@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class User(models.Model):    
+class UserProfile(models.Model):    
     color = models.CharField(max_length=20)
     email = models.EmailField(null=True)
     name = models.CharField(max_length=200, null=True)
@@ -43,7 +43,7 @@ class Task(models.Model):
     priorityImg = models.TextField(default="./assets/img/vector_strich.svg") 
     status = models.CharField(max_length=50)
     date = models.DateField()    
-    assigned_user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='tasks')
+    assigned_user = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True, blank=True, related_name='tasks')
     assigned_guests = models.ManyToManyField(GuestContact, blank=True, related_name='tasks')   
     is_selected = models.BooleanField(default=False)
 
