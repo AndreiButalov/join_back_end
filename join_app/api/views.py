@@ -1,9 +1,12 @@
 from rest_framework.decorators import api_view
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import UserProfileSerializer, GuestContactsSerializer, TasksSerializer, SubTaskSerializer
 from join_app.models import UserProfile, GuestContact, Task, SubTask
 from rest_framework import mixins
 from rest_framework import generics
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 
 
 class UsersView(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
@@ -140,3 +143,21 @@ class SubTasksDetail(mixins.RetrieveModelMixin,
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
+    
+
+class LoginView(APIView):
+    def post(self, request):
+        email = request.data.get('email')
+        password = request.data.get('password')
+
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            return Response({'error': 'E-Mail nicht gefunden'}, status=404)
+
+        user = authenticate(username=user.username, password=password)
+        if user is not None:
+            profile = UserProfile.objects.get(user=user)
+            serializer = UserProfileSerializer(profile)
+            return Response(serializer.data)
+        return Response({'error': 'Falsches Passwort'}, status=401)

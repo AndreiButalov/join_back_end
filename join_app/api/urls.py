@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import UsersView, GuestContactsView, TasksView, TasksDetail, GuestContactsDetail, UsersDetail, SubTasksView, SubTasksDetail
+from .views import UsersView, GuestContactsView, TasksView, TasksDetail, GuestContactsDetail, UsersDetail, SubTasksView, SubTasksDetail, LoginView
 
 urlpatterns = [
+    path('auth/login/', LoginView.as_view(), name='login'),
     path('users/', UsersView.as_view()),          
     path('users/<int:pk>/', UsersDetail.as_view(), name='users-detail'),          
     path('guestContacts/', GuestContactsView.as_view()),          
