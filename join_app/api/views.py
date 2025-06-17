@@ -7,6 +7,8 @@ from rest_framework import mixins
 from rest_framework import generics
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
+from rest_framework.permissions import AllowAny
+from rest_framework.views import APIView
 
 
 class UsersView(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
@@ -146,9 +148,15 @@ class SubTasksDetail(mixins.RetrieveModelMixin,
     
 
 class LoginView(APIView):
+    
+    permission_classes = [AllowAny]
+
     def post(self, request):
         email = request.data.get('email')
         password = request.data.get('password')
+
+        print(email)
+        print(password)
 
         try:
             user = User.objects.get(email=email)
