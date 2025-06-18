@@ -6,6 +6,8 @@ from user_auth_app.models import UserProfile
 from .serializers import UserProfileSerializer
 from django.contrib.auth.models import User
 from rest_framework.permissions import AllowAny
+from .serializers import RegistrationSerializer
+from rest_framework.authtoken.models import Token
 
 
 class LoginView(APIView):
@@ -26,6 +28,31 @@ class LoginView(APIView):
             serializer = UserProfileSerializer(profile)
             return Response(serializer.data)
         return Response({'error': 'Falsches Passwort'}, status=401)
+
+
+class RegisterView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        serialzer = RegistrationSerializer(data=request.data)
+        data  = {}
+
+        if serialzer.is_valid():
+            saved_account = serialzer.save()
+            token, _ = Token.objects.get_or_create(user=saved_account)
+            data  = {
+                'token': token.key,
+                'username': saved_account.username,
+                'email': saved_account.email
+            }
+        else:
+            data=serialzer.errors
+
+        return Response(data)
+
+
+
+
 
 
 
