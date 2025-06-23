@@ -4,6 +4,7 @@ from rest_framework import mixins
 from rest_framework import generics
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
+from .permissions import IsAuthenticatedAndNotGuest
 
 
 class GuestContactsView(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
@@ -11,7 +12,7 @@ class GuestContactsView(mixins.ListModelMixin, mixins.CreateModelMixin, generics
     queryset = GuestContact.objects.all()
     serializer_class = GuestContactsSerializer
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticatedAndNotGuest]
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -25,7 +26,7 @@ class TasksView(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Generic
     queryset = Task.objects.all()
     serializer_class = TasksSerializer
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticatedAndNotGuest]
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -44,7 +45,7 @@ class TasksDetail(mixins.RetrieveModelMixin,
     queryset = Task.objects.all()
     serializer_class = TasksSerializer
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticatedAndNotGuest]
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
@@ -66,7 +67,7 @@ class GuestContactsDetail(mixins.RetrieveModelMixin,
     queryset = GuestContact.objects.all()
     serializer_class = GuestContactsSerializer
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticatedAndNotGuest]
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
@@ -86,7 +87,7 @@ class SubTasksView(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Gene
     queryset = SubTask.objects.all()
     serializer_class = SubTaskSerializer
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticatedAndNotGuest]
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -105,7 +106,7 @@ class SubTasksDetail(mixins.RetrieveModelMixin,
     queryset = SubTask.objects.all()
     serializer_class = SubTaskSerializer
     authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticatedAndNotGuest]
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
