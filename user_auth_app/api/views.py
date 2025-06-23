@@ -10,6 +10,8 @@ from .serializers import RegistrationSerializer
 from rest_framework.authtoken.models import Token
 
 
+from rest_framework.authtoken.models import Token
+
 class LoginView(APIView):
     permission_classes = [AllowAny]
 
@@ -24,10 +26,17 @@ class LoginView(APIView):
 
         user = authenticate(username=user.username, password=password)
         if user is not None:
+            token, _ = Token.objects.get_or_create(user=user)
             profile = UserProfile.objects.get(user=user)
             serializer = UserProfileSerializer(profile)
-            return Response(serializer.data)
+
+            return Response({
+                'token': token.key,
+                'user': serializer.data
+            }, status=200)
+
         return Response({'error': 'Falsches Passwort'}, status=401)
+
 
 
 class RegisterView(APIView):
