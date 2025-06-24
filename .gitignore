@@ -1,17 +1,71 @@
-join_app/__pycache__/__init__.cpython-313.pyc
-join_app/__pycache__/apps.cpython-313.pyc
-join_backend/__pycache__/urls.cpython-313.pyc
-join_backend/__pycache__/settings.cpython-313.pyc
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
 
-join_backend/__pycache__/settings.cpython-313.pyc
-join_backend/__pycache__/wsgi.cpython-313.pyc
-join_app/__pycache__/models.cpython-313.pyc
-join_app/__pycache__/admin.cpython-313.pyc
-join_app/migrations/__pycache__/__init__.cpython-313.pyc
-join_backend/__pycache__/settings.cpython-313.pyc
-join_app/migrations/0001_initial.py
-join_app/migrations/__pycache__/0001_initial.cpython-313.pyc
-join_app/api/__pycache__/serializers.cpython-313.pyc
-join_app/api/__pycache__/urls.cpython-313.pyc
-join_app/api/__pycache__/views.cpython-313.pyc
-join_backend/__pycache__/settings.cpython-313.pyc
+# C Extensions
+*.so
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.pyo
+*.sqlite3
+db.sqlite3
+media/
+staticfiles/
+static_root/
+*.mo
+
+# If you use Django's collectstatic
+/static/
+
+# Environment variables
+.env
+*.env
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.python-version
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Migrations (optional – viele behalten diese aber im Repo)
+# Falls du sie nicht ignorieren willst, lösche diese Zeile
+# */migrations/*.py
+*/migrations/__pycache__/
+
+# pytest / coverage
+.coverage
+htmlcov/
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+.cache
+.pytest_cache/
+
+# pip-tools
+*.txt~  # temporäre Dateien von pip-compile
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Docker
+*.pid
+docker-compose.override.yml
+db.sqlite3
